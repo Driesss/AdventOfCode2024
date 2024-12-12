@@ -1,25 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using AdventOfCode;
+
 Console.WriteLine("reading in file");
 
-var (list1, list2) = ReadListsFromFile("input.txt");
+var input1 = ReadListsFromFile("input.txt");
 
-Console.WriteLine("Ordering lists");
+var result1 = Part1.Solve(input1.array1, input1.array2);
 
-var orderedList1 = list1.OrderBy(x => x).ToList();
-var orderedList2 = list2.OrderBy(x => x).ToList();
+Console.WriteLine("Result1: {0}", result1);
 
-Console.WriteLine("Zipping lists");
+var result2 = Part2.Solve(input1.array1, input1.array2);
 
-var zipped = orderedList1.Zip(orderedList2, (x, y) => (x, y, Math.Abs(x - y))).ToList();
-
-zipped.ForEach(x => Console.WriteLine("{0} - {1}: {2}", x.x, x.y, x.Item3));
-
-Console.WriteLine("Adding entries");
-var result = zipped.Sum(x => x.Item3);
-
-Console.WriteLine("Result: {0}", result);
-
+Console.WriteLine("Result2: {0}", result2);
 
 
 Console.WriteLine("press any key to exit...");
